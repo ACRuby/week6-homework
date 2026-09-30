@@ -2,6 +2,32 @@
 
 Homework for Week 6 of AI Foundations: documenting the **Provider Lookup** Claude skill.
 
+## Demo
+
+**Try it:** https://acruby.github.io/week6-homework/demo/
+
+The demo page ([demo/index.html](demo/index.html)) walks through the skill's
+workflow in the browser:
+- **Look up by NPI.** It checks for exactly 10 digits and rejects anything else.
+- **Look up by name.** When several providers match, it lists them and asks you to
+  pick one.
+- **Show the taxonomy codes.** It lists every code, primary first, and shows
+  "Not listed in NPPES." for empty fields.
+
+Browsers can't call the NPPES API directly, because the API doesn't allow
+cross-site requests. So the demo searches a fixed set of 17 real NPPES records
+([demo/sample-providers.json](demo/sample-providers.json)), copied unchanged from
+the API. Each result links to that provider's live record on the NPPES site, so you
+can check it. Claude itself calls the live API when it uses the skill.
+
+Example searches built into the page:
+- NPI `1922074434`: one organization with 5 taxonomy codes
+- Organization "Mayo Clinic", state MN: 12 matches, so you choose one
+- Last name "Nguyen", Houston, TX, specialty "cardiovascular": 5 matches
+- NPI `12345`: rejected for not being 10 digits
+
+The full skill definition is in [SKILL.md](SKILL.md).
+
 ## What the skill is
 
 Provider Lookup (`provider-lookup`) is a Claude skill that looks up U.S. healthcare

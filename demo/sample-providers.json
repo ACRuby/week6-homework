@@ -1,0 +1,521 @@
+{
+    "source":  "NPPES NPI Registry API v2.1 (https://npiregistry.cms.hhs.gov/api/?version=2.1)",
+    "fetched":  "2026-09-29",
+    "results":  [
+                    {
+                        "number":  "1881018208",
+                        "enumeration_type":  "NPI-2",
+                        "basic":  {
+                                      "first_name":  null,
+                                      "last_name":  null,
+                                      "credential":  null,
+                                      "organization_name":  "MAYO CLINIC",
+                                      "status":  "A"
+                                  },
+                        "addresses":  [
+                                          {
+                                              "address_purpose":  "LOCATION",
+                                              "city":  "ROCHESTER",
+                                              "state":  "MN"
+                                          }
+                                      ],
+                        "taxonomies":  [
+                                           {
+                                               "code":  "261QM1300X",
+                                               "desc":  "Clinic/Center, Multi-Specialty",
+                                               "primary":  true,
+                                               "state":  null,
+                                               "license":  null
+                                           }
+                                       ]
+                    },
+                    {
+                        "number":  "1538568928",
+                        "enumeration_type":  "NPI-2",
+                        "basic":  {
+                                      "first_name":  null,
+                                      "last_name":  null,
+                                      "credential":  null,
+                                      "organization_name":  "MAYO CLINIC",
+                                      "status":  "A"
+                                  },
+                        "addresses":  [
+                                          {
+                                              "address_purpose":  "LOCATION",
+                                              "city":  "ROCHESTER",
+                                              "state":  "MN"
+                                          }
+                                      ],
+                        "taxonomies":  [
+                                           {
+                                               "code":  "261QM1300X",
+                                               "desc":  "Clinic/Center, Multi-Specialty",
+                                               "primary":  true,
+                                               "state":  null,
+                                               "license":  null
+                                           }
+                                       ]
+                    },
+                    {
+                        "number":  "1821326570",
+                        "enumeration_type":  "NPI-2",
+                        "basic":  {
+                                      "first_name":  null,
+                                      "last_name":  null,
+                                      "credential":  null,
+                                      "organization_name":  "MAYO CLINIC",
+                                      "status":  "A"
+                                  },
+                        "addresses":  [
+                                          {
+                                              "address_purpose":  "LOCATION",
+                                              "city":  "ROCHESTER",
+                                              "state":  "MN"
+                                          }
+                                      ],
+                        "taxonomies":  [
+                                           {
+                                               "code":  "3416A0800X",
+                                               "desc":  "Ambulance, Air Transport",
+                                               "primary":  false,
+                                               "state":  "WI",
+                                               "license":  "6011278"
+                                           },
+                                           {
+                                               "code":  "3416A0800X",
+                                               "desc":  "Ambulance, Air Transport",
+                                               "primary":  true,
+                                               "state":  "MN",
+                                               "license":  "0390"
+                                           }
+                                       ]
+                    },
+                    {
+                        "number":  "1164758868",
+                        "enumeration_type":  "NPI-2",
+                        "basic":  {
+                                      "first_name":  null,
+                                      "last_name":  null,
+                                      "credential":  null,
+                                      "organization_name":  "MAYO CLINIC",
+                                      "status":  "A"
+                                  },
+                        "addresses":  [
+                                          {
+                                              "address_purpose":  "LOCATION",
+                                              "city":  "ROCHESTER",
+                                              "state":  "MN"
+                                          }
+                                      ],
+                        "taxonomies":  [
+                                           {
+                                               "code":  "251G00000X",
+                                               "desc":  "Hospice Care, Community Based",
+                                               "primary":  true,
+                                               "state":  "MN",
+                                               "license":  "345965"
+                                           }
+                                       ]
+                    },
+                    {
+                        "number":  "1588895643",
+                        "enumeration_type":  "NPI-2",
+                        "basic":  {
+                                      "first_name":  null,
+                                      "last_name":  null,
+                                      "credential":  null,
+                                      "organization_name":  "MAYO CLINIC",
+                                      "status":  "A"
+                                  },
+                        "addresses":  [
+                                          {
+                                              "address_purpose":  "LOCATION",
+                                              "city":  "ROCHESTER",
+                                              "state":  "MN"
+                                          }
+                                      ],
+                        "taxonomies":  [
+                                           {
+                                               "code":  "251B00000X",
+                                               "desc":  "Case Management",
+                                               "primary":  true,
+                                               "state":  null,
+                                               "license":  null
+                                           }
+                                       ]
+                    },
+                    {
+                        "number":  "1912403536",
+                        "enumeration_type":  "NPI-2",
+                        "basic":  {
+                                      "first_name":  null,
+                                      "last_name":  null,
+                                      "credential":  null,
+                                      "organization_name":  "MAYO CLINIC",
+                                      "status":  "A"
+                                  },
+                        "addresses":  [
+                                          {
+                                              "address_purpose":  "LOCATION",
+                                              "city":  "ROCHESTER",
+                                              "state":  "MN"
+                                          }
+                                      ],
+                        "taxonomies":  [
+                                           {
+                                               "code":  "261QM1300X",
+                                               "desc":  "Clinic/Center, Multi-Specialty",
+                                               "primary":  true,
+                                               "state":  null,
+                                               "license":  null
+                                           }
+                                       ]
+                    },
+                    {
+                        "number":  "1114343860",
+                        "enumeration_type":  "NPI-2",
+                        "basic":  {
+                                      "first_name":  null,
+                                      "last_name":  null,
+                                      "credential":  null,
+                                      "organization_name":  "MAYO CLINIC",
+                                      "status":  "A"
+                                  },
+                        "addresses":  [
+                                          {
+                                              "address_purpose":  "LOCATION",
+                                              "city":  "ROCHESTER",
+                                              "state":  "MN"
+                                          }
+                                      ],
+                        "taxonomies":  [
+                                           {
+                                               "code":  "207RI0200X",
+                                               "desc":  "Internal Medicine, Infectious Disease",
+                                               "primary":  true,
+                                               "state":  null,
+                                               "license":  null
+                                           }
+                                       ]
+                    },
+                    {
+                        "number":  "1427235068",
+                        "enumeration_type":  "NPI-2",
+                        "basic":  {
+                                      "first_name":  null,
+                                      "last_name":  null,
+                                      "credential":  null,
+                                      "organization_name":  "MAYO CLINIC",
+                                      "status":  "A"
+                                  },
+                        "addresses":  [
+                                          {
+                                              "address_purpose":  "LOCATION",
+                                              "city":  "ROCHESTER",
+                                              "state":  "MN"
+                                          }
+                                      ],
+                        "taxonomies":  [
+                                           {
+                                               "code":  "261QM2500X",
+                                               "desc":  "Clinic/Center, Medical Specialty",
+                                               "primary":  true,
+                                               "state":  null,
+                                               "license":  null
+                                           }
+                                       ]
+                    },
+                    {
+                        "number":  "1922074434",
+                        "enumeration_type":  "NPI-2",
+                        "basic":  {
+                                      "first_name":  null,
+                                      "last_name":  null,
+                                      "credential":  null,
+                                      "organization_name":  "MAYO CLINIC",
+                                      "status":  "A"
+                                  },
+                        "addresses":  [
+                                          {
+                                              "address_purpose":  "LOCATION",
+                                              "city":  "ROCHESTER",
+                                              "state":  "MN"
+                                          }
+                                      ],
+                        "taxonomies":  [
+                                           {
+                                               "code":  "207RG0100X",
+                                               "desc":  "Internal Medicine, Gastroenterology",
+                                               "primary":  false,
+                                               "state":  null,
+                                               "license":  null
+                                           },
+                                           {
+                                               "code":  "208D00000X",
+                                               "desc":  "General Practice",
+                                               "primary":  false,
+                                               "state":  null,
+                                               "license":  null
+                                           },
+                                           {
+                                               "code":  "291U00000X",
+                                               "desc":  "Clinical Medical Laboratory",
+                                               "primary":  false,
+                                               "state":  null,
+                                               "license":  null
+                                           },
+                                           {
+                                               "code":  "332B00000X",
+                                               "desc":  "Durable Medical Equipment \u0026 Medical Supplies",
+                                               "primary":  false,
+                                               "state":  null,
+                                               "license":  null
+                                           },
+                                           {
+                                               "code":  "261QM1300X",
+                                               "desc":  "Clinic/Center, Multi-Specialty",
+                                               "primary":  true,
+                                               "state":  null,
+                                               "license":  null
+                                           }
+                                       ]
+                    },
+                    {
+                        "number":  "1467622092",
+                        "enumeration_type":  "NPI-2",
+                        "basic":  {
+                                      "first_name":  null,
+                                      "last_name":  null,
+                                      "credential":  null,
+                                      "organization_name":  "MAYO CLINIC",
+                                      "status":  "A"
+                                  },
+                        "addresses":  [
+                                          {
+                                              "address_purpose":  "LOCATION",
+                                              "city":  "ROCHESTER",
+                                              "state":  "MN"
+                                          }
+                                      ],
+                        "taxonomies":  [
+                                           {
+                                               "code":  "332B00000X",
+                                               "desc":  "Durable Medical Equipment \u0026 Medical Supplies",
+                                               "primary":  true,
+                                               "state":  null,
+                                               "license":  null
+                                           }
+                                       ]
+                    },
+                    {
+                        "number":  "1356291603",
+                        "enumeration_type":  "NPI-2",
+                        "basic":  {
+                                      "first_name":  null,
+                                      "last_name":  null,
+                                      "credential":  null,
+                                      "organization_name":  "MAYO CLINIC",
+                                      "status":  "A"
+                                  },
+                        "addresses":  [
+                                          {
+                                              "address_purpose":  "LOCATION",
+                                              "city":  "ROCHESTER",
+                                              "state":  "MN"
+                                          }
+                                      ],
+                        "taxonomies":  [
+                                           {
+                                               "code":  "282N00000X",
+                                               "desc":  "General Acute Care Hospital",
+                                               "primary":  true,
+                                               "state":  null,
+                                               "license":  null
+                                           }
+                                       ]
+                    },
+                    {
+                        "number":  "1083249577",
+                        "enumeration_type":  "NPI-2",
+                        "basic":  {
+                                      "first_name":  null,
+                                      "last_name":  null,
+                                      "credential":  null,
+                                      "organization_name":  "MAYO CLINIC",
+                                      "status":  "A"
+                                  },
+                        "addresses":  [
+                                          {
+                                              "address_purpose":  "LOCATION",
+                                              "city":  "ROCHESTER",
+                                              "state":  "MN"
+                                          }
+                                      ],
+                        "taxonomies":  [
+                                           {
+                                               "code":  "291U00000X",
+                                               "desc":  "Clinical Medical Laboratory",
+                                               "primary":  true,
+                                               "state":  null,
+                                               "license":  null
+                                           }
+                                       ]
+                    },
+                    {
+                        "number":  "1639149453",
+                        "enumeration_type":  "NPI-1",
+                        "basic":  {
+                                      "first_name":  "CHAU",
+                                      "last_name":  "NGUYEN",
+                                      "credential":  "MD",
+                                      "organization_name":  null,
+                                      "status":  "A"
+                                  },
+                        "addresses":  [
+                                          {
+                                              "address_purpose":  "LOCATION",
+                                              "city":  "HOUSTON",
+                                              "state":  "TX"
+                                          }
+                                      ],
+                        "taxonomies":  [
+                                           {
+                                               "code":  "207RC0000X",
+                                               "desc":  "Internal Medicine, Cardiovascular Disease",
+                                               "primary":  true,
+                                               "state":  "TX",
+                                               "license":  "L0876"
+                                           }
+                                       ]
+                    },
+                    {
+                        "number":  "1275528481",
+                        "enumeration_type":  "NPI-1",
+                        "basic":  {
+                                      "first_name":  "LOI",
+                                      "last_name":  "NGUYEN",
+                                      "credential":  "MD",
+                                      "organization_name":  null,
+                                      "status":  "A"
+                                  },
+                        "addresses":  [
+                                          {
+                                              "address_purpose":  "LOCATION",
+                                              "city":  "HOUSTON",
+                                              "state":  "TX"
+                                          }
+                                      ],
+                        "taxonomies":  [
+                                           {
+                                               "code":  "207RC0000X",
+                                               "desc":  "Internal Medicine, Cardiovascular Disease",
+                                               "primary":  true,
+                                               "state":  "TX",
+                                               "license":  "H3275"
+                                           }
+                                       ]
+                    },
+                    {
+                        "number":  "1194925040",
+                        "enumeration_type":  "NPI-1",
+                        "basic":  {
+                                      "first_name":  "PHUC",
+                                      "last_name":  "NGUYEN",
+                                      "credential":  "MD",
+                                      "organization_name":  null,
+                                      "status":  "A"
+                                  },
+                        "addresses":  [
+                                          {
+                                              "address_purpose":  "LOCATION",
+                                              "city":  "HOUSTON",
+                                              "state":  "TX"
+                                          }
+                                      ],
+                        "taxonomies":  [
+                                           {
+                                               "code":  "207R00000X",
+                                               "desc":  "Internal Medicine",
+                                               "primary":  false,
+                                               "state":  "MI",
+                                               "license":  "4301090175"
+                                           },
+                                           {
+                                               "code":  "207RC0000X",
+                                               "desc":  "Internal Medicine, Cardiovascular Disease",
+                                               "primary":  true,
+                                               "state":  "TX",
+                                               "license":  "Q2035"
+                                           }
+                                       ]
+                    },
+                    {
+                        "number":  "1881222594",
+                        "enumeration_type":  "NPI-1",
+                        "basic":  {
+                                      "first_name":  "RYAN",
+                                      "last_name":  "NGUYEN",
+                                      "credential":  "DO",
+                                      "organization_name":  null,
+                                      "status":  "A"
+                                  },
+                        "addresses":  [
+                                          {
+                                              "address_purpose":  "LOCATION",
+                                              "city":  "HOUSTON",
+                                              "state":  "TX"
+                                          }
+                                      ],
+                        "taxonomies":  [
+                                           {
+                                               "code":  "207RC0000X",
+                                               "desc":  "Internal Medicine, Cardiovascular Disease",
+                                               "primary":  true,
+                                               "state":  "TX",
+                                               "license":  "V3656"
+                                           }
+                                       ]
+                    },
+                    {
+                        "number":  "1952506511",
+                        "enumeration_type":  "NPI-1",
+                        "basic":  {
+                                      "first_name":  "VINCE",
+                                      "last_name":  "NGUYEN",
+                                      "credential":  "MD",
+                                      "organization_name":  null,
+                                      "status":  "A"
+                                  },
+                        "addresses":  [
+                                          {
+                                              "address_purpose":  "LOCATION",
+                                              "city":  "HOUSTON",
+                                              "state":  "TX"
+                                          }
+                                      ],
+                        "taxonomies":  [
+                                           {
+                                               "code":  "207RI0011X",
+                                               "desc":  "Internal Medicine, Interventional Cardiology",
+                                               "primary":  true,
+                                               "state":  "TX",
+                                               "license":  "N4621"
+                                           },
+                                           {
+                                               "code":  "207RC0000X",
+                                               "desc":  "Internal Medicine, Cardiovascular Disease",
+                                               "primary":  false,
+                                               "state":  "TX",
+                                               "license":  "N4621"
+                                           },
+                                           {
+                                               "code":  "207R00000X",
+                                               "desc":  "Internal Medicine",
+                                               "primary":  false,
+                                               "state":  "TX",
+                                               "license":  "N4621"
+                                           }
+                                       ]
+                    }
+                ]
+}

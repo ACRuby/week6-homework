@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Provider Lookup Demo</title>
+<style>
+  :root {
+    --bg: #f7f7f5;
+    --surface: #ffffff;
+    --text: #1d1d1b;
+    --muted: #5f5e5a;
+    --border: #dcdbd6;
+    --accent: #1f5f99;
+    --accent-text: #ffffff;
+    --primary-bg: #e7f0f9;
+    --note-bg: #fff6e0;
+    --note-border: #e9c46a;
+    --error-bg: #fdecec;
+    --error-border: #d9534f;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #171716;
+      --surface: #22221f;
+      --text: #ecebe6;
+      --muted: #a8a7a0;
+      --border: #3a3a36;
+      --accent: #6aa7df;
+      --accent-text: #0e1a26;
+      --primary-bg: #1c2e40;
+      --note-bg: #332a14;
+      --note-border: #8a6d2a;
+      --error-bg: #3a1c1c;
+      --error-border: #b0493f;
+    }
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font: 16px/1.5 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  }
+  main { max-width: 820px; margin: 0 auto; padding: 32px 16px 48px; }
+  h1 { font-size: 1.7rem; margin: 0 0 4px; }
+  .lede { color: var(--muted); margin: 0 0 20px; }
+  .note {
+    background: var(--note-bg);
+    border: 1px solid var(--note-border);
+    border-radius: 8px;
+    padding: 12px 14px;
+    font-size: 0.92rem;
+    margin-bottom: 20px;
+  }
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 18px;
+    margin-bottom: 20px;
+  }
+  .tabs { display: flex; gap: 8px; margin-bottom: 14px; }
+  .tabs button {
+    background: transparent;
+    color: var(--text);
+    border: 1px solid var(--border);
+  }
+  .tabs button[aria-selected="true"] {
+    background: var(--accent);
+    color: var(--accent-text);
+    border-color: var(--accent);
+  }
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 10px 12px; }
+  label { display: block; font-size: 0.85rem; color: var(--muted); }
+  input {
+    width: 100%;
+    margin-top: 3px;
+    padding: 8px 10px;
+    font: inherit;
+    color: var(--text);
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+  }
+  button {
+    font: inherit;
+    padding: 8px 14px;
+    border-radius: 6px;
+    border: 1px solid var(--accent);
+    background: var(--accent);
+    color: var(--accent-text);
+    cursor: pointer;
+  }
+  .actions { margin-top: 14px; }
+  .examples { margin-top: 14px; font-size: 0.9rem; color: var(--muted); }
+  .examples button {
+    padding: 4px 10px;
+    margin: 4px 6px 0 0;
+    font-size: 0.85rem;
+    background: transparent;
+    color: var(--accent);
+  }
+  .error {
+    background: var(--error-bg);
+    border: 1px solid var(--error-border);
+    border-radius: 8px;
+    padding: 12px 14px;
+  }
+  ol.choices { padding-left: 1.4em; margin: 8px 0 0; }
+  ol.choices li { margin: 6px 0; }
+  ol.choices button {
+    background: transparent;
+    color: var(--accent);
+    border: none;
+    padding: 0;
+    text-align: left;
+    text-decoration: underline;
+  }
+  .meta p { margin: 2px 0; }
+  .table-wrap { overflow-x: auto; margin-top: 12px; }
+  table { border-collapse: collapse; width: 100%; font-size: 0.93rem; }
+  th, td { border: 1px solid var(--border); padding: 7px 9px; text-align: left; vertical-align: top; }
+  th { background: var(--bg); }
+  tr.primary td { background: var(--primary-bg); }
+  code { font-family: ui-monospace, Consolas, monospace; }
+  .muted { color: var(--muted); font-size: 0.9rem; }
+  a { color: var(--accent); }
+</style>
+</head>
+<body>
+<main>
+  <h1>Provider Lookup demo</h1>
+  <p class="lede">Try the <strong>provider-lookup</strong> Claude skill's workflow: find a U.S. healthcare
+    provider and list every taxonomy code on their NPPES record, primary first.</p>
+
+  <div class="note" id="data-note">
+    <strong>Sample data.</strong> Browsers can't call the NPPES API directly (it doesn't allow
+    cross-site requests), so this page searches a fixed set of real NPPES records, copied unchanged
+    from the API. Records can change, so use the "View live record" link on a result to check it
+    against NPPES. Claude calls the live API when it uses the skill.
+  </div>
+
+  <div class="card">
+    <div class="tabs" role="tablist">
+      <button type="button" role="tab" id="tab-npi" aria-selected="true">Look up by NPI</button>
+      <button type="button" role="tab" id="tab-name" aria-selected="false">Look up by name</button>
+    </div>
+
+    <form id="form-npi">
+      <label for="npi">NPI number (10 digits)
+        <input id="npi" inputmode="numeric" autocomplete="off" placeholder="e.g. 1922074434">
+      </label>
+      <div class="actions"><button type="submit">Look up</button></div>
+    </form>
+
+    <form id="form-name" hidden>
+      <div class="grid">
+        <label>First name <input name="first_name" autocomplete="off"></label>
+        <label>Last name <input name="last_name" autocomplete="off"></label>
+        <label>Organization name <input name="organization_name" autocomplete="off"></label>
+        <label>City <input name="city" autocomplete="off"></label>
+        <label>State <input name="state" maxlength="2" autocomplete="off" placeholder="e.g. TX"></label>
+        <label>Specialty <input name="taxonomy_description" autocomplete="off" placeholder="e.g. cardiovascular"></label>
+      </div>
+      <div class="actions"><button type="submit">Search</button></div>
+    </form>
+
+    <div class="examples">Try an example:
+      <button type="button" data-npi="1922074434">NPI with 5 taxonomy codes</button>
+      <button type="button" data-name='{"organization_name":"mayo clinic","state":"MN"}'>Mayo Clinic, MN (several matches)</button>
+      <button type="button" data-name='{"last_name":"nguyen","city":"houston","state":"TX","taxonomy_description":"cardiovascular"}'>Nguyen, Houston cardiology</button>
+      <button type="button" data-npi="12345">Invalid NPI</button>
+    </div>
+  </div>
+
+  <section id="output" aria-live="polite"></section>
+
+  <p class="muted">NPPES data is self-reported by providers. For billing or credentialing decisions,
+    confirm with the provider. Skill definition: <a href="../SKILL.md">SKILL.md</a>.</p>
+</main>
+
+<script>
+  const NOT_LISTED = "Not listed in NPPES.";
+  const LIVE_URL = "https://npiregistry.cms.hhs.gov/provider-view/";
+  let records = [];
+
+  const $ = (id) => document.getElementById(id);
+  const out = $("output");
+
+  function esc(value) {
+    return String(value).replace(/[&<>"']/g, (c) =>
+      ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+  }
+  // Empty or missing fields are reported, never filled in.
+  function field(value) {
+    return value === null || value === undefined || String(value).trim() === "" ? NOT_LISTED : esc(value);
+  }
+  function locationOf(r) {
+    return (r.addresses || []).find((a) => a.address_purpose === "LOCATION") || {};
+  }
+  function displayName(r) {
+    const b = r.basic || {};
+    if (r.enumeration_type === "NPI-2") return field(b.organization_name);
+    const name = [b.first_name, b.last_name].filter(Boolean).join(" ");
+    return b.credential ? `${field(name)}, ${esc(b.credential)}` : field(name);
+  }
+  function primaryTaxonomy(r) {
+    return (r.taxonomies || []).find((t) => t.primary) || {};
+  }
+
+  function showError(html) {
+    out.innerHTML = `<div class="error">${html}</div>`;
+  }
+
+  // Step 2: look up by NPI.
+  function lookupNpi(raw) {
+    const npi = raw.trim();
+    if (!/^\d{10}$/.test(npi)) {
+      showError(`<strong>"${esc(npi)}" isn't a valid NPI.</strong> An NPI is exactly 10 digits. Please double-check the number.`);
+      return;
+    }
+    const match = records.filter((r) => r.number === npi);
+    if (match.length === 0) {
+      showError(`No provider was found for NPI <code>${esc(npi)}</code> in this demo's sample records.
+        Please verify the number, or <a href="${LIVE_URL}${esc(npi)}" target="_blank" rel="noopener">check it on NPPES</a>.`);
+      return;
+    }
+    showRecord(match[0]);
+  }
+
+  // Step 3: look up by name. Mirrors the API parameters; names match from the start, like NPPES.
+  function lookupName(params) {
+    const given = Object.entries(params).filter(([, v]) => v.trim() !== "");
+    if (given.length === 0) {
+      showError("Enter at least one search field.");
+      return;
+    }
+    const starts = (value, q) => (value || "").toLowerCase().startsWith(q.trim().toLowerCase());
+    const matches = records.filter((r) => given.every(([key, q]) => {
+      const b = r.basic || {};
+      switch (key) {
+        case "first_name": return starts(b.first_name, q);
+        case "last_name": return starts(b.last_name, q);
+        case "organization_name": return starts(b.organization_name, q);
+        case "city": return starts(locationOf(r).city, q);
+        case "state": return (locationOf(r).state || "").toLowerCase() === q.trim().toLowerCase();
+        case "taxonomy_description":
+          return (r.taxonomies || []).some((t) => (t.desc || "").toLowerCase().includes(q.trim().toLowerCase()));
+      }
+      return true;
+    })).slice(0, 20);
+
+    if (matches.length === 0) {
+      showError("No providers matched that search. Try loosening it, for example by dropping the city.");
+    } else if (matches.length === 1) {
+      showRecord(matches[0]);
+    } else {
+      showChoices(matches);
+    }
+  }
+
+  // More than one match: list them and let the user choose. Never pick for them.
+  function showChoices(matches) {
+    const items = matches.map((r, i) => {
+      const loc = locationOf(r);
+      return `<li><button type="button" data-pick="${i}">${displayName(r)}</button>
+        · NPI <code>${esc(r.number)}</code> · ${field(primaryTaxonomy(r).desc)}
+        · ${field(loc.city)}, ${field(loc.state)}</li>`;
+    }).join("");
+    out.innerHTML = `<div class="card"><strong>${matches.length} providers matched.</strong>
+      Which one do you mean?<ol class="choices">${items}</ol></div>`;
+    out.querySelectorAll("[data-pick]").forEach((btn) =>
+      btn.addEventListener("click", () => showRecord(matches[Number(btn.dataset.pick)])));
+  }
+
+  // Step 4: every taxonomy code, primary first.
+  function showRecord(r) {
+    const taxonomies = [...(r.taxonomies || [])].sort((a, b) => Number(b.primary) - Number(a.primary));
+    const status = (r.basic || {}).status;
+    const deactivated = status === "D";
+    const statusText = status === "A" ? "Active" : deactivated ? "Deactivated" : field(status);
+    const rows = taxonomies.map((t) => `<tr class="${t.primary ? "primary" : ""}">
+        <td>${t.primary ? "Primary" : ""}</td><td><code>${field(t.code)}</code></td>
+        <td>${field(t.desc)}</td><td>${field(t.state)}</td></tr>`).join("");
+    out.innerHTML = `<div class="card">
+      ${deactivated ? `<div class="error" style="margin-bottom:12px"><strong>This NPI is deactivated.</strong> Its taxonomy codes are shown for reference.</div>` : ""}
+      <div class="meta">
+        <p><strong>Provider:</strong> ${displayName(r)}</p>
+        <p><strong>NPI:</strong> <code>${esc(r.number)}</code></p>
+        <p><strong>Status:</strong> ${statusText}</p>
+      </div>
+      <div class="table-wrap"><table>
+        <thead><tr><th></th><th>Taxonomy code</th><th>Description</th><th>License state</th></tr></thead>
+        <tbody>${rows || `<tr><td colspan="4">${NOT_LISTED}</td></tr>`}</tbody>
+      </table></div>
+      <p class="muted"><a href="${LIVE_URL}${esc(r.number)}" target="_blank" rel="noopener">View live record on NPPES</a></p>
+    </div>`;
+  }
+
+  function selectTab(which) {
+    $("tab-npi").setAttribute("aria-selected", which === "npi");
+    $("tab-name").setAttribute("aria-selected", which === "name");
+    $("form-npi").hidden = which !== "npi";
+    $("form-name").hidden = which !== "name";
+    out.innerHTML = "";
+  }
+
+  $("tab-npi").addEventListener("click", () => selectTab("npi"));
+  $("tab-name").addEventListener("click", () => selectTab("name"));
+  $("form-npi").addEventListener("submit", (e) => { e.preventDefault(); lookupNpi($("npi").value); });
+  $("form-name").addEventListener("submit", (e) => {
+    e.preventDefault();
+    lookupName(Object.fromEntries(new FormData(e.target)));
+  });
+
+  document.querySelectorAll(".examples [data-npi]").forEach((btn) => btn.addEventListener("click", () => {
+    selectTab("npi");
+    $("npi").value = btn.dataset.npi;
+    lookupNpi(btn.dataset.npi);
+  }));
+  document.querySelectorAll(".examples [data-name]").forEach((btn) => btn.addEventListener("click", () => {
+    selectTab("name");
+    const params = JSON.parse(btn.dataset.name);
+    $("form-name").querySelectorAll("input").forEach((input) => { input.value = params[input.name] || ""; });
+    lookupName(Object.fromEntries(new FormData($("form-name"))));
+  }));
+
+  // If the sample data can't load, say the lookup failed and stop.
+  fetch("sample-providers.json")
+    .then((res) => { if (!res.ok) throw new Error(res.status); return res.json(); })
+    .then((data) => {
+      records = data.results;
+      $("data-note").insertAdjacentHTML("beforeend",
+        ` <span class="muted">(${records.length} records, fetched ${esc(data.fetched)}.)</span>`);
+    })
+    .catch(() => showError("The lookup failed: the sample provider data couldn't be loaded. No results can be shown."));
+</script>
+</body>
+</html>
