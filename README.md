@@ -20,13 +20,48 @@ cross-site requests. So the demo searches a fixed set of 17 real NPPES records
 the API. Each result links to that provider's live record on the NPPES site, so you
 can check it. Claude itself calls the live API when it uses the skill.
 
+The demo is a standalone web page that imitates the skill's steps. It doesn't use
+Claude or read the skill file.
+
 Example searches built into the page:
 - NPI `1922074434`: one organization with 5 taxonomy codes
 - Organization "Mayo Clinic", state MN: 12 matches, so you choose one
 - Last name "Nguyen", Houston, TX, specialty "cardiovascular": 5 matches
 - NPI `12345`: rejected for not being 10 digits
 
-The full skill definition is in [SKILL.md](SKILL.md).
+The full skill definition is in [provider-lookup/SKILL.md](provider-lookup/SKILL.md).
+
+## Install the skill
+
+The skill is packaged as **[provider-lookup.skill](provider-lookup.skill)**
+([download](https://github.com/ACRuby/week6-homework/raw/feature/skill/provider-lookup.skill)).
+A `.skill` file is a zip archive of the skill folder, `provider-lookup/SKILL.md`. It
+was built and validated with the packaging script from Anthropic's skill-creator
+skill.
+
+- **Claude app:** go to the Skills section of Settings and upload
+  `provider-lookup.skill`.
+- **Claude Code:** extract the file into your personal skills folder. Windows'
+  built-in `tar` can read the zip format:
+
+  ```bash
+  tar -xf provider-lookup.skill -C ~/.claude/skills
+  ```
+
+  This creates `~/.claude/skills/provider-lookup/SKILL.md`.
+
+### Repo layout
+
+| Path | What it is |
+|---|---|
+| `provider-lookup/SKILL.md` | The skill's source |
+| `provider-lookup.skill` | The packaged skill, ready to install |
+| `demo/` | The browser demo and its sample NPPES records |
+
+To rebuild the package after editing `SKILL.md`, run skill-creator's packaging
+script on the `provider-lookup` folder:
+`python -m scripts.package_skill <path>/provider-lookup <output-dir>`. Run it from
+the skill-creator folder; it needs PyYAML.
 
 ## What the skill is
 
